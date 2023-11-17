@@ -1,8 +1,8 @@
 package marsrover;
 
 public class Plateau {
-	int xSize;
-	int ySize;
+	private int xSize;
+	private int ySize;
 	
 	public Plateau(int xSize, int ySize) {
 		this.xSize = xSize;

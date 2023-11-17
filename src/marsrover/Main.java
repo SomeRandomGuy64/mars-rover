@@ -1,50 +1,53 @@
 package marsrover;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
-		validateUserInput();
+	public static void main(String[] args) throws FileNotFoundException {
+		InstructionsProcessor instructionsProcessor = getUserInput();
 		
-//		calculateRoverDestination();
+		instructionsProcessor.updateRoverLocation();
 		
-//		outputRoverDestination();
+		outputRoverDestination(instructionsProcessor);
 	}
 	
-	public static void validateUserInput() {
-		Scanner scanner = new Scanner(System.in);
+	public static InstructionsProcessor getUserInput() throws FileNotFoundException {
+		String filepath = ("src/resources/input.txt");
+		File file = new File(filepath);
 		
-		System.out.println("Enter the maximum size of the plateau: ");
-		
+		Scanner scanner = new Scanner(file);
+
 		int xSize = scanner.nextInt();
 		int ySize = scanner.nextInt();
 		
 		Plateau plateau = new Plateau(xSize, ySize);
-				
-		System.out.println("The plateau size is: " + plateau.xSize + " " + plateau.ySize);
-		System.out.println("Enter rover instructions");
 		
-		while(true) {
-			String roverInstructionsInput = scanner.nextLine();
-			
-			if (roverInstructionsInput.equalsIgnoreCase("exit")) {
-				break;
-			}
-			
+		ArrayList<Rover> rovers = new ArrayList<>();
+		
+		while(scanner.hasNextLine()) {			
 			int roverXPosition = scanner.nextInt();
 			int roverYPosition = scanner.nextInt();
 			char roverDirection = scanner.next().charAt(0);
-			char[] roverInstructions = roverInstructionsInput.toCharArray();			
+			scanner.nextLine();
+			String roverInstructionsInput = scanner.nextLine();
+			
+			char[] roverInstructions = roverInstructionsInput.toCharArray();
+			
+			Rover rover = new Rover(roverXPosition, roverYPosition, roverDirection, roverInstructions);
+			rovers.add(rover);
 		}
 		
 		scanner.close();
-	}
-	
-	public static void calculateRoverDestination() {
 		
+		InstructionsProcessor instructionsProcessor = new InstructionsProcessor(rovers, plateau);
+		return instructionsProcessor;
 	}
 	
-	public static void outputRoverDestination() {
-		
+	public static void outputRoverDestination(InstructionsProcessor instructionsProcessor) {
+		for (Rover rover : instructionsProcessor.getRovers()) {
+			System.out.println(rover.getXPosition() + " " + rover.getYPosition() + " " + rover.getDirection() + "\n");
+		}
 	}
-	
 }

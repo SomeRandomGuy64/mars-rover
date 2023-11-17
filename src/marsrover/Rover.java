@@ -1,14 +1,16 @@
 package marsrover;
 
 public class Rover {
-	int xPosition;
-	int yPosition;
-	char direction;
+	private int xPosition;
+	private int yPosition;
+	private char direction;
+	private char[] instructions;
 	
-	public Rover(int xPosition, int yPosition, char direction) {
+	public Rover(int xPosition, int yPosition, char direction, char[] instructions) {
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.direction = direction;
+		this.instructions = instructions;
 	}
 	
 	public void setXPosition(int xPosition) {
@@ -33,6 +35,10 @@ public class Rover {
 	
 	public char getDirection() {
 		return this.direction;
+	}
+	
+	public char[] getRoverInstructions() {
+		return this.instructions;
 	}
 	
 	public void setNewPositionAndDirection(int xPosition, int yPosition, char direction) {
