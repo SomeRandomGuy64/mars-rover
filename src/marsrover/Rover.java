@@ -48,6 +48,6 @@ public class Rover {
 	}
 	
 	public void printPosition() {
-		System.out.println(this.xPosition + " " + this.yPosition + " " + this.direction);
+		System.out.println(this.xPosition + " " + this.yPosition + " " + this.direction + "\n");
 	}
 }

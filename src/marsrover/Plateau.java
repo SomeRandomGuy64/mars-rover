@@ -16,4 +16,13 @@ public class Plateau {
 	public int getYSize() {
 		return this.ySize;
 	}
+	
+	public void checkRoverWithinPlateau(Rover rover) {
+		if (rover.getXPosition() > getXSize()) {
+			rover.setXPosition(getXSize());
+		}
+		if (rover.getYPosition() > getYSize()) {
+			rover.setYPosition(getYSize());
+		}
+	}
 }
