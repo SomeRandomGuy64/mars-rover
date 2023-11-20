@@ -47,7 +47,7 @@ public class Main {
 	
 	public static void outputRoverDestination(InstructionsProcessor instructionsProcessor) {
 		for (Rover rover : instructionsProcessor.getRovers()) {
-			System.out.println(rover.getXPosition() + " " + rover.getYPosition() + " " + rover.getDirection() + "\n");
+			rover.printPosition();
 		}
 	}
 }
