@@ -18,7 +18,7 @@ public class Main {
 		
 		processor.updateRoverLocation();
 		
-		outputRoverDestination(processor);
+		outputRoverPosition(processor);
 //		Rover rover = new Rover(new Coordinate(1, 2), new North());
 //		RoverController controller = new RoverController();
 //		Plateau plateau = new Plateau(5, 5);
@@ -100,7 +100,7 @@ public class Main {
 		return rover;
 	}
 	
-	public static void outputRoverDestination(InstructionsProcessor processor) {
+	public static void outputRoverPosition(InstructionsProcessor processor) {
 		for (Rover rover : processor.getRovers()) {
 			rover.getCoordinate().printPosition();
 			rover.getDirection().printDirection();
