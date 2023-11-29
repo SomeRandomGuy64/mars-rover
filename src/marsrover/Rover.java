@@ -1,53 +1,41 @@
 package marsrover;
 
 public class Rover {
-	private int xPosition;
-	private int yPosition;
-	private char direction;
+	private Coordinate coordinate;
+	private Direction direction;
 	private char[] instructions;
 	
-	public Rover(int xPosition, int yPosition, char direction, char[] instructions) {
-		this.xPosition = xPosition;
-		this.yPosition = yPosition;
+	public Rover(Coordinate coordinate, Direction direction, char[] instructions) {
+		this.coordinate = coordinate;
 		this.direction = direction;
 		this.instructions = instructions;
 	}
 	
-	public void setXPosition(int xPosition) {
-		this.xPosition = xPosition;
+	public void moveForward() {
+		coordinate = direction.moveForward(coordinate);
 	}
 	
-	public void setYPosition(int yPosition) {
-		this.yPosition = yPosition;
+	public void turnLeft() {
+		direction = direction.turnLeft();
 	}
 	
-	public void setDirection(char direction) {
-		this.direction = direction;
+	public void turnRight() {
+		direction = direction.turnRight();
 	}
 	
-	public int getXPosition() {
-		return this.xPosition;
+	public Coordinate getCoordinate() {
+		return coordinate;
 	}
 	
-	public int getYPosition() {
-		return this.yPosition;
+	public Direction getDirection() {
+		return direction;
 	}
 	
-	public char getDirection() {
-		return this.direction;
+	public char[] getInstructions() {
+		return instructions;
 	}
 	
-	public char[] getRoverInstructions() {
-		return this.instructions;
-	}
-	
-	public void setNewPositionAndDirection(int xPosition, int yPosition, char direction) {
-		setXPosition(xPosition);
-		setYPosition(yPosition);
-		setDirection(direction);
-	}
-	
-	public void printPosition() {
-		System.out.println(this.xPosition + " " + this.yPosition + " " + this.direction + "\n");
+	public void setInstructions(char[] instructions) {
+		this.instructions = instructions;
 	}
 }
